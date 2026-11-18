@@ -18,10 +18,16 @@ public class CartItem {
     }
 
     public void setQuantity(int quantity) {
+        if (quantity < 0) throw new IllegalArgumentException("Số lượng sản phẩm không hợp lệ!");
         this.quantity = quantity;
     }
 
     public double getTotal() {
         return product.getPrice() * quantity;
+    }
+
+
+    public String getDescription() {
+        return product.getDescription() + " | SL: " + quantity + " | Thành tiền: " + getTotal();
     }
 }

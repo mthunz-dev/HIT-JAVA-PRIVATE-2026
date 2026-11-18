@@ -7,6 +7,11 @@ public class Product {
     private int stock;
 
     public Product(String id, String name, double price, int stock) {
+
+        if (id.isEmpty()) throw  new IllegalArgumentException("Product's id can not be empty!");
+        if (name.isEmpty()) throw new IllegalArgumentException("Product's name can not be empty!");
+        if (price <= 0) throw new IllegalArgumentException("Product's price must > 0!");
+        if (stock < 0) throw new IllegalArgumentException("Product's stock must >= 0 !");
         this.id = id;
         this.name = name;
         this.price = price;
@@ -34,15 +39,18 @@ public class Product {
     }
 
     public void setPrice(double price) {
+        if (price <= 0) throw new IllegalArgumentException("Product's price must > 0!");
         this.price = price;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    void decreaseStock(int quantity) {
+        if (quantity == 0) throw new IllegalArgumentException("Quantity must > 0");
+        if (quantity > this.stock) throw new IllegalArgumentException("Quantity must < stock !");
+
+        this.stock -= quantity;
     }
 
-    @Override
-    public String toString() {
-        return id + " | " + name + " | " + price + " | " + "tồn: " + stock;
+    public String getDescription() {
+        return id + " | " + name + " | " + price;
     }
 }

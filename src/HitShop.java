@@ -1,4 +1,5 @@
 import Buoi2.Item;
+import model.Book;
 import model.CartItem;
 import model.Customer;
 import model.Product;
@@ -12,6 +13,7 @@ public class HitShop {
 
     static final Product P01 = new Product("P01", "Áo thun", 150000, 20);
     static final Product P02 = new Product("P02", "Bình nước", 50000, 10);
+    static final Product P03 = new Book("P03", "Java cơ bản", 120000, 5, "An Nguyen");
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -102,9 +104,8 @@ public class HitShop {
 
         for (int i = 0; i < cart.size(); i++) {
             CartItem item = cart.get(i);
-            Product product = item.getProduct();
 
-            System.out.printf("%d. %s | %s | %.1f | SL: %d | Thành tiền: %.1f%n", i + 1, product.getId(), product.getName(), product.getPrice(), item.getQuantity(), item.getTotal());
+            System.out.println((i + 1) + ". " + item.getDescription());
         }
     }
 
